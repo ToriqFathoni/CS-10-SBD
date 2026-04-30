@@ -41,8 +41,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
 
 // API routes
-app.use('/user', userRoutes);
-app.use('/items', itemRoutes);
+// Ubah agar sesuai dengan pemanggilan frontend
+app.use('/api/users', userRoutes); // Tambahkan 's' jika frontend memanggil /users
+app.use('/api/items', itemRoutes);
 app.use('/transaction', transactionRoutes);
 app.use('/auth', authRoutes);
 app.use('/reports', reportRoutes);
