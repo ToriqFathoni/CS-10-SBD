@@ -2,7 +2,7 @@
   "name": "simple_backend",
   "version": "1.0.0",
   "description": "Simple Express.js backend for SBD Module 6 case study",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
