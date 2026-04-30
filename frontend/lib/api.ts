@@ -4,7 +4,15 @@ type ApiEnvelope<T> = {
   payload: T;
 };
 
-const API_PREFIX = "/api";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "";
+
+function buildApiUrl(path: string) {
+  const normalizedPath = path.startsWith("/api")
+    ? path
+    : `/api${path.startsWith("/") ? path : `/${path}`}`;
+
+  return `${API_BASE_URL}${normalizedPath}`;
+}
 
 export class ApiError extends Error {
   status: number;
@@ -17,7 +25,7 @@ export class ApiError extends Error {
 }
 
 export async function fetchJson<T>(path: string, init?: RequestInit): Promise<ApiEnvelope<T>> {
-  const response = await fetch(`${API_PREFIX}${path}`, {
+  const response = await fetch(buildApiUrl(path), {
     headers: {
       "Content-Type": "application/json",
       ...(init?.headers || {}),

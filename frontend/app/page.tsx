@@ -21,7 +21,7 @@ export default function CatalogPage() {
         setIsLoading(true);
         setError("");
 
-        const response = await fetchJson<Barang[]>("/items");
+        const response = await fetchJson<Barang[]>("/api/items");
         setBarang(response.payload);
       } catch (requestError) {
         const message = requestError instanceof Error ? requestError.message : "Gagal memuat katalog";
@@ -54,7 +54,7 @@ export default function CatalogPage() {
           {barang.map((item) => (
             <div key={item.id} className="bg-white rounded-xl shadow-sm border border-zinc-200 p-6 flex flex-col hover:shadow-md hover:border-zinc-300 transition">
               <h2 className="text-xl font-bold mb-2 text-zinc-900">{item.name}</h2>
-              <p className="text-zinc-500 text-sm mb-4 flex-grow">
+              <p className="text-zinc-500 text-sm mb-4 grow">
                 {item.stock !== undefined ? `Stok tersedia: ${item.stock}` : "Item tersedia di katalog."}
               </p>
               <div className="text-xl font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 w-fit px-3 py-1 rounded-md">

@@ -17,7 +17,7 @@ const app = express();
 // Security middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  origin: process.env.CORS_ORIGIN || 'http://localhost:3001',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -41,12 +41,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
 
 // API routes
-// Ubah agar sesuai dengan pemanggilan frontend
-app.use('/api/users', userRoutes); // Tambahkan 's' jika frontend memanggil /users
+app.use('/api/user', userRoutes);
 app.use('/api/items', itemRoutes);
-app.use('/transaction', transactionRoutes);
-app.use('/auth', authRoutes);
-app.use('/reports', reportRoutes);
+app.use('/api/transaction', transactionRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/reports', reportRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {

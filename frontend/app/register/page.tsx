@@ -20,7 +20,7 @@ export default function RegisterPage() {
       setIsSubmitting(true);
       setMessage("");
 
-      await fetchJson("/user/register", {
+      await fetchJson("/api/user/register", {
         method: "POST",
         body: JSON.stringify({
           name: nama,

@@ -19,7 +19,7 @@ export default function LoginPage() {
       setMessage("");
 
       const response = await fetchJson<{ token: string; user: { id: number; name: string; username: string; email: string } }>(
-        "/auth/login",
+        "/api/auth/login",
         {
           method: "POST",
           body: JSON.stringify({ email, password }),
